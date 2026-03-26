@@ -54,7 +54,8 @@ to detect whether a person’s eyes are open or closed. If the eyes remain close
 
 ---
 
-📁 Project Structure
+## 📁 Project Structure
+
 
 Drowsiness_Detection_AI/
 │── main.py              # Webcam-based detection
@@ -65,7 +66,6 @@ Drowsiness_Detection_AI/
 │     └── demo.mp4       # Sample video
 │── test.ipynb           # Development notebook
 │── README.md
-
 ---
 
 🚀 Installation & Setup
