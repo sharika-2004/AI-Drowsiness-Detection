@@ -1,27 +1,21 @@
-🚗 AI-Based Drowsiness Detection System
+# 🚗 AI-Based Drowsiness Detection System
 
----
-
-📌 Overview
-
+## 📌 Overview
 This project is an AI-powered drowsiness detection system that monitors a person's eye activity in real-time using computer vision. It detects signs of fatigue such as prolonged eye closure and alerts the user with visual and audio warnings.
 
 The system is designed to help prevent accidents caused by driver drowsiness and can also be used for general fatigue monitoring during long working hours.
 
 ---
 
-❗ Problem Statement
-
+## ❗ Problem Statement
 Drowsiness is a major cause of road accidents and reduced productivity. Drivers and individuals often fail to recognize early signs of fatigue, which can lead to dangerous situations.
 
 There is a need for a real-time, low-cost system that can monitor alertness and provide immediate feedback.
 
 ---
 
-💡 Proposed Solution
-
+## 💡 Proposed Solution
 This project uses:
-
 - Computer Vision (MediaPipe)
 - Eye Aspect Ratio (EAR)
 - Real-time video processing
@@ -30,162 +24,135 @@ to detect whether a person’s eyes are open or closed. If the eyes remain close
 
 ---
 
-⚙️ Features
-
-- ✅ Real-time face and eye detection
-- ✅ Eye Aspect Ratio (EAR) calculation
-- ✅ Drowsiness detection based on eye closure
-- ✅ Visual alert on screen
-- ✅ Audio alert using alarm sound
-- ✅ Works with both webcam and video input
-- ✅ Streamlit-based user interface
+## ⚙️ Features
+- Real-time face and eye detection  
+- Eye Aspect Ratio (EAR) calculation  
+- Drowsiness detection based on eye closure  
+- Visual alert on screen  
+- Audio alert using alarm sound  
+- Works with both webcam and video input  
+- Streamlit-based user interface  
 
 ---
 
-🛠️ Technologies Used
-
-- Python
-- OpenCV
-- MediaPipe
-- NumPy
-- SciPy
-- Pygame
-- Streamlit
+## 🛠️ Technologies Used
+- Python  
+- OpenCV  
+- MediaPipe  
+- NumPy  
+- SciPy  
+- Pygame  
+- Streamlit  
 
 ---
 
 ## 📁 Project Structure
 
 Drowsiness_Detection_AI/
-│
-├── main.py            # Webcam-based detection
-├── video_demo.py      # Video-based detection
-├── app.py             # Streamlit UI
-├── alarm.wav          # Alert sound
-│
-├── videos/
-│   └── demo.mp4       # Sample video
-│
-├── test.ipynb         # Development notebook
-├── README.md
+
+├── main.py              # Webcam-based detection  
+├── video_demo.py        # Video-based detection  
+├── app.py               # Streamlit UI  
+├── alarm.wav            # Alert sound  
+
+├── videos/  
+│   └── demo.mp4         # Sample video  
+
+├── test.ipynb           # Development notebook  
+├── README.md  
 
 ---
 
-🚀 Installation & Setup
+## 🚀 Installation & Setup
 
-1. Clone the repository
+1. Clone the repository  
+git clone https://github.com/your-username/drowsiness-detection.git  
+cd drowsiness-detection  
 
-git clone https://github.com/your-username/drowsiness-detection.git
-cd drowsiness-detection
+2. Create virtual environment  
+python -m venv venv  
 
-2. Create virtual environment
+3. Activate environment  
 
-python -m venv venv
+Windows:  
+venv\Scripts\activate  
 
-3. Activate environment
+Mac/Linux:  
+source venv/bin/activate  
 
-Windows:
-
-venv\Scripts\activate
-
-Mac/Linux:
-
-source venv/bin/activate
-
-4. Install dependencies
-
-pip install opencv-python mediapipe numpy scipy pygame streamlit
+4. Install dependencies  
+pip install opencv-python mediapipe numpy scipy pygame streamlit  
 
 ---
 
-▶️ How to Run
+## ▶️ How to Run
 
-🔹 Option 1: Webcam Detection
+### Webcam Detection
+python main.py  
 
-python main.py
+### Video Detection
+python video_demo.py  
 
-🔹 Option 2: Video Detection
+Make sure your video is placed in:  
+videos/demo.mp4  
 
-python video_demo.py
+### Streamlit UI (Recommended)
+streamlit run app.py  
 
-Make sure your video is placed in:
-
-videos/demo.mp4
-
-🔹 Option 3: Streamlit UI (Recommended)
-
-streamlit run app.py
-
-Then:
-
-- Select Webcam or Video
-- Click Start Detection
+Then:  
+- Select Webcam or Video  
+- Click Start Detection  
 
 ---
 
-⚙️ Implementation Method
+## ⚙️ Implementation Method
 
-The implementation of the drowsiness detection system follows a structured pipeline combining computer vision techniques and rule-based logic.
+The system captures video input from a webcam or video file and processes it frame by frame. MediaPipe Face Mesh is used to detect facial landmarks, from which eye regions are extracted. The Eye Aspect Ratio (EAR) is calculated using eye landmark coordinates to determine whether the eyes are open or closed.
 
-First, video input is captured either from a webcam or a pre-recorded video file. Each frame of the video is processed in real-time. The system uses MediaPipe Face Mesh to detect facial landmarks, identifying 468 key points on the face. From these, specific landmark points corresponding to the eyes are selected.
+If the EAR falls below a predefined threshold for a number of consecutive frames, the system identifies drowsiness. A visual alert is displayed on the screen, and an alarm sound is triggered using pygame. The system continues monitoring and resets once normal eye activity resumes.
 
-Next, the coordinates of these eye landmarks are extracted and converted into pixel values. Using these coordinates, the Eye Aspect Ratio (EAR) is calculated, which measures the openness of the eyes. A higher EAR value indicates open eyes, while a lower value indicates closed eyes.
-
-To improve reliability, the system performs temporal analysis by checking EAR values across multiple consecutive frames. If the EAR remains below a predefined threshold (e.g., 0.30) for a certain number of frames (e.g., 10), the system identifies the user as drowsy.
-
-Once drowsiness is detected, the system triggers both visual and audio alerts. A warning message is displayed on the screen, and an alarm sound is played using the pygame library. The system continues monitoring and resets the detection when normal eye activity is observed.
-
-Additionally, a Streamlit-based user interface is integrated with the backend system. This allows users to interact with the system easily by selecting input modes and viewing real-time detection results through a web interface.
+A Streamlit-based user interface is integrated to provide an interactive platform for selecting input modes and viewing real-time results.
 
 ---
 
-🧠 How It Works
-
-1. Video input is captured (webcam or file)
-2. MediaPipe detects facial landmarks
-3. Eye coordinates are extracted
-4. Eye Aspect Ratio (EAR) is computed
-5. If EAR < threshold for several frames:
-   - Drowsiness is detected
-   - Alert message + sound is triggered
+## 🧠 How It Works
+1. Capture video input  
+2. Detect face using MediaPipe  
+3. Extract eye landmarks  
+4. Calculate EAR  
+5. Compare with threshold  
+6. Trigger alert if drowsiness detected  
 
 ---
 
-📊 Key Concept: Eye Aspect Ratio (EAR)
-
-- High EAR → Eyes open
-- Low EAR → Eyes closed
-
----
-
-⚠️ Challenges Faced
-
-- Selecting proper EAR threshold for accuracy
-- Handling different lighting conditions
-- Integrating real-time video with UI
-- Ensuring smooth audio alert
+## 📊 Key Concept: Eye Aspect Ratio (EAR)
+- High EAR → Eyes open  
+- Low EAR → Eyes closed  
 
 ---
 
-🚀 Future Improvements
-
-- Add yawning detection
-- Use deep learning (CNN) for eye classification
-- Mobile app integration
-- Driver monitoring system with multiple sensors
-
----
-
-🎯 Conclusion
-
-This project demonstrates how computer vision can be applied to solve a real-world safety problem. It provides a simple yet effective solution for detecting drowsiness and preventing potential accidents.
+## ⚠️ Challenges Faced
+- Selecting proper EAR threshold  
+- Handling lighting variations  
+- Real-time processing performance  
+- Audio alert integration  
 
 ---
 
-👨‍💻 Author
+## 🚀 Future Improvements
+- Add yawning detection  
+- Use deep learning models  
+- Mobile app deployment  
+- Multi-sensor integration  
 
-Sharika P K
-BTech CSE (AI & ML)
+---
+
+## 🎯 Conclusion
+This project demonstrates how computer vision can be applied to detect drowsiness in real-time. It provides a simple, efficient, and practical solution for improving safety and reducing fatigue-related risks.
+
+---
+
+## 👨‍💻 Author
+Sharika P K  
+BTech CSE (AI & ML)  
 VIT Bhopal University
-
----
