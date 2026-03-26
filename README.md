@@ -50,15 +50,15 @@ to detect whether a person’s eyes are open or closed. If the eyes remain close
 
 Drowsiness_Detection_AI/
 
-├── main.py              # Webcam-based detection  
-├── video_demo.py        # Video-based detection  
-├── app.py               # Streamlit UI  
-├── alarm.wav            # Alert sound  
+├── main.py                        # Webcam-based detection  
+├── video_demo.py                  # Video-based detection  
+├── app.py                         # Streamlit UI  
+├── alarm.wav                      # Alert sound  
 
 ├── videos/  
-│   └── demo.mp4         # Sample video  
+│   └── demo.mp4                   # Sample video  
 
-├── test.ipynb           # Development notebook  
+├── test.ipynb                     # Development notebook  
 ├── README.md  
 
 ---
